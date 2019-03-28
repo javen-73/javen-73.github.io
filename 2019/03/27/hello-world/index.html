@@ -89,6 +89,16 @@
     }
   };
 </script>
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 
   
@@ -485,7 +495,6 @@
     
 
     
-
     
       
     
@@ -497,9 +506,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Test/" rel="tag"># Test</a>
+            <a href="/tags/Test/" rel="tag"><i class="fa fa-tag"></i> Test</a>
           
-            <a href="/tags/aaa/" rel="tag"># aaa</a>
+            <a href="/tags/aaa/" rel="tag"><i class="fa fa-tag"></i> aaa</a>
           
         </div>
       
