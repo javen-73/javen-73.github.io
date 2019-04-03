@@ -24,4 +24,17 @@
         <tag>aaa</tag>
       </tags>
   </entry>
+  <entry>
+    <title><![CDATA[Feign开启Hystrix报错 NotFallBack Instance]]></title>
+    <url>%2F2018%2F03%2F27%2Fhystrix%20%E5%BC%80%E5%90%AF%E4%BF%9D%E5%AD%98%2F</url>
+    <content type="text"><![CDATA[1.当我们使用feign开启hystrix的时候，有时候我们会遇到这个问题 java.lang.IllegalStateException: No fallback instance of type class异常。 尽管你的FallBack类上加了Component注解。可仍然提示没有fallback实例。 我们在开发的时候忽略了一个问题。就是引入feign的工程。没有扫描feign接口的包。 所以我们有两种解决方式 在ApplicationClass里面加入ComponentScan 包的路径设置到fallback工程的包 我们将ApplicationClass的包向上提级 比如，我是一个商场的项目com.xxx.mall.api/com.xxx.mall.provider 我们把Application放在com.xxx.mall包底下。增加默认扫描包的范围就行了。同时注解EnableFeignClients也不需要直接具体的包]]></content>
+      <categories>
+        <category>SpringCloud 坑</category>
+      </categories>
+      <tags>
+        <tag>SpringCloud</tag>
+        <tag>Feign</tag>
+        <tag>Hystrix</tag>
+      </tags>
+  </entry>
 </search>
