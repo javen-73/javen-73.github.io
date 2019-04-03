@@ -1,35 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Test]]></title>
-    <url>%2F2019%2F03%2F27%2FTest%2F</url>
-    <content type="text"><![CDATA[1.首先这个并不是什么难事]]></content>
-      <categories>
-        <category>你好世界 - 哈哈哈</category>
-      </categories>
-      <tags>
-        <tag>我哪里知道啊</tag>
-        <tag>我不知道哈</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2019%2F03%2F27%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-      <categories>
-        <category>你好世界 - 略略略</category>
-      </categories>
-      <tags>
-        <tag>Test</tag>
-        <tag>aaa</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Feign开启Hystrix报错 NotFallBack Instance]]></title>
     <url>%2F2018%2F03%2F27%2Fhystrix%20%E5%BC%80%E5%90%AF%E4%BF%9D%E5%AD%98%2F</url>
     <content type="text"><![CDATA[1.当我们使用feign开启hystrix的时候，有时候我们会遇到这个问题 java.lang.IllegalStateException: No fallback instance of type class异常。 尽管你的FallBack类上加了Component注解。可仍然提示没有fallback实例。 我们在开发的时候忽略了一个问题。就是引入feign的工程。没有扫描feign接口的包。 所以我们有两种解决方式 在ApplicationClass里面加入ComponentScan 包的路径设置到fallback工程的包 我们将ApplicationClass的包向上提级 比如，我是一个商场的项目com.xxx.mall.api/com.xxx.mall.provider 我们把Application放在com.xxx.mall包底下。增加默认扫描包的范围就行了。同时注解EnableFeignClients也不需要直接具体的包]]></content>
       <categories>
-        <category>SpringCloud 坑</category>
+        <category>所遇问题</category>
       </categories>
       <tags>
         <tag>SpringCloud</tag>
