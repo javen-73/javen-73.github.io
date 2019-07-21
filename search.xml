@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[阴阳师脚本-七三]]></title>
+    <url>%2F2019%2F07%2F21%2Fyys%2F</url>
+    <content type="text"><![CDATA[更新 2019-07-21 脚本首次制作完成 功能 自动刷御魂（单人、组队） 集火标记 下载地址 阴阳师脚本-七三下载地址 使用问题 这个脚本封号吗？ 我也不知道，反正随机的地方都随机了。我自己测了一天没啥事 还有其他功能？ 暂时还没有，现在支持御魂 能刷魂土吗？ 可以的，单人模式需要您自己手动刷一局，后面脚本默认进魂土的副本 组队支持三个人吗？因为大部分都是单刷或者两人组队，最新一期只支持了两人模式。三个人刷需要3个人都在上车，然后启动辅助 这个脚本收费吗？暂时不收费的 组队模式会自动创建队伍吗？ 不会哦，队长的话需要手动创建一下队伍就好了哦 截图]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
+      <tags>
+        <tag>阴阳师</tag>
+        <tag>脚本</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Feign开启Hystrix报错 NotFallBack Instance]]></title>
     <url>%2F2018%2F03%2F27%2Fhystrix%20%E5%BC%80%E5%90%AF%E4%BF%9D%E5%AD%98%2F</url>
     <content type="text"><![CDATA[1.当我们使用feign开启hystrix的时候，有时候我们会遇到这个问题 java.lang.IllegalStateException: No fallback instance of type class异常。 尽管你的FallBack类上加了Component注解。可仍然提示没有fallback实例。 我们在开发的时候忽略了一个问题。就是引入feign的工程。没有扫描feign接口的包。 所以我们有两种解决方式 在ApplicationClass里面加入ComponentScan 包的路径设置到fallback工程的包 我们将ApplicationClass的包向上提级 比如，我是一个商场的项目com.xxx.mall.api/com.xxx.mall.provider 我们把Application放在com.xxx.mall包底下。增加默认扫描包的范围就行了。同时注解EnableFeignClients也不需要直接具体的包]]></content>
