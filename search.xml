@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Mysql组内排序]]></title>
+    <url>%2FMysql%E7%BB%84%E5%86%85%E6%8E%92%E5%BA%8F.html</url>
+    <content type="text"><![CDATA[Mysql组内排序说起组内排序上来就有人想说啦，不就搞个子查询就行啦嘛 其实这个方法我试过，根据我的业务是会全表扫描的，贼鸡儿慢 今天说的是另一种方法，先说一下要组内排序的需求 ID 设备编码 创建时间 151869253765566464 865800045644967 2019-06-14 16:06:33 151869253765566465 865800045644967 2019-06-17 11:40:33 154392710449467392 865533030153500 2019-06-21 15:13:52 我一上来就没动脑子就写了SQL 123SELECT * FROM t_xxx GROUP BY 设备编码ORDER BY 创建时间 DESC 但是……事与愿违啊，这个排序根本就没发挥作用，是组外的时间排序 然后就只能考虑用子查询先排序，后分组 12345SELECT * FROM ( SELECT * FROM t_xxx ORDER BY 创建时间 DESC) tmpGROUP BY 设备编码 可是然并卵，还是没有获取到最新的创建时间 那怎么办呢？只能另辟蹊径，从Having上下手？想了半天也没法整 在我思绪万千搜索满屏的CSDN的时候，发现了一个大佬的解决方案 在我这个胸无点墨的人心里只蹦出一个字 使用GROUP_CONCAT，将创建时间全部合并起来，然后再配合ORDER BY 创建时间，对组内时间排序 然后把GROUP_CONCAT 的字段SUB_STRING一下取第一个不就完事儿了嘛~ 话不多说上SQL 12345SELECT 设备编码, SUBSTRING_INDEX(GROUP_CONCAT(创建时间 ORDER BY 创建时间 desc),&apos;,&apos;,1) last_timeFROM t_xxxGROUP BY 设备编码 搞定！而且也走了我的索引]]></content>
+      <categories>
+        <category>Mysql</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>组内排序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hexo-next主题-gitalk坑.md]]></title>
-    <url>%2Fhexo-next%E4%B8%BB%E9%A2%98-gitalk%E5%9D%91-md.html</url>
+    <url>%2Fhexo-next%E4%B8%BB%E9%A2%98-gitalk%E5%9D%91.html</url>
     <content type="text"><![CDATA[在使用gitment、gitalk中的坑点击登陆调回首页，地址栏报错 error=redirect_uri_mismatch&amp;error_description=The redirect_uri MUST match the registered callback URL for this application.&amp;error_uri= 如果遇到这种情况，请检查你全部的文章，名称是否有空格]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[阴阳师脚本-七三]]></title>
