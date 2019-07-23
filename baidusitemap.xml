@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://javen73.com/hystrix-%E5%BC%80%E5%90%AF%E4%BF%9D%E5%AD%98.html</loc>
+    <lastmod>2019-07-23</lastmod>
+  </url>  <url>
     <loc>https://javen73.com/Mysql%E7%BB%84%E5%86%85%E6%8E%92%E5%BA%8F.html</loc>
     <lastmod>2019-07-23</lastmod>
   </url>  <url>
@@ -9,8 +12,5 @@
   </url>  <url>
     <loc>https://javen73.com/yys.html</loc>
     <lastmod>2019-07-23</lastmod>
-  </url>  <url>
-    <loc>https://javen73.com/hystrix-%E5%BC%80%E5%90%AF%E4%BF%9D%E5%AD%98.html</loc>
-    <lastmod>2019-04-03</lastmod>
   </url>
 </urlset>
