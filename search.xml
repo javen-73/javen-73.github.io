@@ -13,7 +13,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[hexo-next主题-gitalk坑.md]]></title>
+    <title><![CDATA[hexo-next主题-gitalk坑]]></title>
     <url>%2Fhexo-next%E4%B8%BB%E9%A2%98-gitalk%E5%9D%91.html</url>
     <content type="text"><![CDATA[在使用gitment、gitalk中的坑点击登陆调回首页，地址栏报错 error=redirect_uri_mismatch&amp;error_description=The redirect_uri MUST match the registered callback URL for this application.&amp;error_uri= 如果遇到这种情况，请检查你全部的文章，名称是否有空格]]></content>
       <categories>
