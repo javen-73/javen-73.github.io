@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo-next主题-gitalk坑.md]]></title>
+    <url>%2Fhexo-next%E4%B8%BB%E9%A2%98-gitalk%E5%9D%91-md.html</url>
+    <content type="text"><![CDATA[在使用gitment、gitalk中的坑点击登陆调回首页，地址栏报错 error=redirect_uri_mismatch&amp;error_description=The redirect_uri MUST match the registered callback URL for this application.&amp;error_uri= 如果遇到这种情况，请检查你全部的文章，名称是否有空格]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[阴阳师脚本-七三]]></title>
     <url>%2Fyys.html</url>
     <content type="text"><![CDATA[更新 2019-07-21 脚本首次制作完成 功能 自动刷御魂（单人、组队） 集火标记 下载地址 阴阳师脚本-七三下载地址 使用问题 这个脚本封号吗？ 我也不知道，反正随机的地方都随机了。我自己测了一天没啥事 还有其他功能？ 暂时还没有，现在支持御魂 能刷魂土吗？ 可以的，单人模式需要您自己手动刷一局，后面脚本默认进魂土的副本 组队支持三个人吗？因为大部分都是单刷或者两人组队，最新一期只支持了两人模式。三个人刷需要3个人都在上车，然后启动辅助 这个脚本收费吗？暂时不收费的 组队模式会自动创建队伍吗？ 不会哦，队长的话需要手动创建一下队伍就好了哦 截图]]></content>
