@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title><![CDATA[Mysql组内排序]]></title>
-    <url>%2FMysql%E7%BB%84%E5%86%85%E6%8E%92%E5%BA%8F.html</url>
+    <url>%2Farchives%2F4111870243.html</url>
     <content type="text"><![CDATA[Mysql组内排序说起组内排序上来就有人想说啦，不就搞个子查询就行啦嘛 其实这个方法我试过，根据我的业务是会全表扫描的，贼鸡儿慢 今天说的是另一种方法，先说一下要组内排序的需求 ID 设备编码 创建时间 151869253765566464 865800045644967 2019-06-14 16:06:33 151869253765566465 865800045644967 2019-06-17 11:40:33 154392710449467392 865533030153500 2019-06-21 15:13:52 我一上来就没动脑子就写了SQL 123SELECT * FROM t_xxx GROUP BY 设备编码ORDER BY 创建时间 DESC 但是……事与愿违啊，这个排序根本就没发挥作用，是组外的时间排序 然后就只能考虑用子查询先排序，后分组 12345SELECT * FROM ( SELECT * FROM t_xxx ORDER BY 创建时间 DESC) tmpGROUP BY 设备编码 可是然并卵，还是没有获取到最新的创建时间 那怎么办呢？只能另辟蹊径，从Having上下手？想了半天也没法整 在我思绪万千搜索满屏的CSDN的时候，发现了一个大佬的解决方案 在我这个胸无点墨的人心里只蹦出一个字 使用GROUP_CONCAT，将创建时间全部合并起来，然后再配合ORDER BY 创建时间，对组内时间排序 然后把GROUP_CONCAT 的字段SUB_STRING一下取第一个不就完事儿了嘛~ 话不多说上SQL 12345SELECT 设备编码, SUBSTRING_INDEX(GROUP_CONCAT(创建时间 ORDER BY 创建时间 desc),&apos;,&apos;,1) last_timeFROM t_xxxGROUP BY 设备编码 搞定！而且也走了我的索引]]></content>
       <categories>
         <category>Mysql</category>
@@ -14,7 +14,7 @@
   </entry>
   <entry>
     <title><![CDATA[hexo-next主题-gitalk坑]]></title>
-    <url>%2Fhexo-next%E4%B8%BB%E9%A2%98-gitalk%E5%9D%91.html</url>
+    <url>%2Farchives%2F2083171564.html</url>
     <content type="text"><![CDATA[在使用gitment、gitalk中的坑点击登陆调回首页，地址栏报错 error=redirect_uri_mismatch&amp;error_description=The redirect_uri MUST match the registered callback URL for this application.&amp;error_uri= 如果遇到这种情况，请检查你全部的文章，名称是否有空格]]></content>
       <categories>
         <category>其他</category>
@@ -25,8 +25,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[阴阳师脚本-七三]]></title>
-    <url>%2Fyys.html</url>
+    <title><![CDATA[七三阴阳师脚本]]></title>
+    <url>%2Farchives%2F2218541845.html</url>
     <content type="text"><![CDATA[更新 2019-07-21 脚本首次制作完成 功能 自动刷御魂（单人、组队） 集火标记 下载地址 阴阳师脚本-七三下载地址 使用问题 这个脚本封号吗？ 我也不知道，反正随机的地方都随机了。我自己测了一天没啥事 还有其他功能？ 暂时还没有，现在支持御魂 能刷魂土吗？ 可以的，单人模式需要您自己手动刷一局，后面脚本默认进魂土的副本 组队支持三个人吗？因为大部分都是单刷或者两人组队，最新一期只支持了两人模式。三个人刷需要3个人都在上车，然后启动辅助 这个脚本收费吗？暂时不收费的 组队模式会自动创建队伍吗？ 不会哦，队长的话需要手动创建一下队伍就好了哦 截图]]></content>
       <categories>
         <category>游戏</category>
@@ -38,7 +38,7 @@
   </entry>
   <entry>
     <title><![CDATA[Feign开启Hystrix报错 NotFallBack Instance]]></title>
-    <url>%2Fhystrix-%E5%BC%80%E5%90%AF%E4%BF%9D%E5%AD%98.html</url>
+    <url>%2Farchives%2F518085647.html</url>
     <content type="text"><![CDATA[1.当我们使用feign开启hystrix的时候，有时候我们会遇到这个问题 java.lang.IllegalStateException: No fallback instance of type class异常。 尽管你的FallBack类上加了Component注解。可仍然提示没有fallback实例。 我们在开发的时候忽略了一个问题。就是引入feign的工程。没有扫描feign接口的包。 所以我们有两种解决方式 在ApplicationClass里面加入ComponentScan 包的路径设置到fallback工程的包 我们将ApplicationClass的包向上提级 比如，我是一个商场的项目com.xxx.mall.api/com.xxx.mall.provider 我们把Application放在com.xxx.mall包底下。增加默认扫描包的范围就行了。同时注解EnableFeignClients也不需要直接具体的包]]></content>
       <categories>
         <category>SpringCloud</category>
