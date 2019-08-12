@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[策略设计模式]]></title>
+    <url>%2Farchives%2F355843973.html</url>
+    <content type="text"><![CDATA[策略设计模式 （Strategy Pattern）简单介绍举个栗子，领导让你做一个优惠券系统，比如满减和打折这两种类型的优惠券，这两种券的计算过程，可以看做“策略”。假如在结算的时候，用户使用了满减券，则需要“切换”到满减的策略上计算。 当然满减券也可以继续往下做策略，比如满元减、满件减等等。 策略模式，可以让我们在一个清晰的骨架下开发，当然产生的策略类也会很多。 代码实现123456789101112131415161718192021222324252627282930313233public interface CouponCalculator&#123; // 计算方法 BigDecimal calculator();&#125;// 满减策略public class ReduceCouponCalculator implements CouponCalculator &#123; //满减券计算 BigDecimal calculator()&#123; // TODO ... return new BigDecimal(-5); &#125;&#125;// 打折策略public class DiscountCouponCalculator implements CouponCalculator &#123; //打折券计算 BigDecimal calculator()&#123; // TODO ... return new BigDecimal(-4); &#125;&#125;public class pay&#123; public void pay()&#123; //调用满减策略 CouponCalculator couponCalc = new ReduceCouponCalculator(); BigDecimal reduceMoney = couponCalc.calculator(); // 调用打折策略 CouponCalculator couponCalc = new ReduceCouponCalculator(); BigDecimal reduceMoney = couponCalc.calculator(); &#125;&#125; 小结在使用策略模式中，必须要结合多态的概念进行封装使用。 使用反射和SpringIOC可以灵活调用你的策略。]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>策略设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Mysql组内排序]]></title>
     <url>%2Farchives%2F4111870243.html</url>
     <content type="text"><![CDATA[Mysql组内排序说起组内排序上来就有人想说啦，不就搞个子查询就行啦嘛 其实这个方法我试过，根据我的业务是会全表扫描的，贼鸡儿慢 今天说的是另一种方法，先说一下要组内排序的需求 ID 设备编码 创建时间 151869253765566464 865800045644967 2019-06-14 16:06:33 151869253765566465 865800045644967 2019-06-17 11:40:33 154392710449467392 865533030153500 2019-06-21 15:13:52 我一上来就没动脑子就写了SQL 123SELECT * FROM t_xxx GROUP BY 设备编码ORDER BY 创建时间 DESC 但是……事与愿违啊，这个排序根本就没发挥作用，是组外的时间排序 然后就只能考虑用子查询先排序，后分组 12345SELECT * FROM ( SELECT * FROM t_xxx ORDER BY 创建时间 DESC) tmpGROUP BY 设备编码 可是然并卵，还是没有获取到最新的创建时间 那怎么办呢？只能另辟蹊径，从Having上下手？想了半天也没法整 在我思绪万千搜索满屏的CSDN的时候，发现了一个大佬的解决方案 在我这个胸无点墨的人心里只蹦出一个字 使用GROUP_CONCAT，将创建时间全部合并起来，然后再配合ORDER BY 创建时间，对组内时间排序 然后把GROUP_CONCAT 的字段SUB_STRING一下取第一个不就完事儿了嘛~ 话不多说上SQL 12345SELECT 设备编码, SUBSTRING_INDEX(GROUP_CONCAT(创建时间 ORDER BY 创建时间 desc),&apos;,&apos;,1) last_timeFROM t_xxxGROUP BY 设备编码 搞定！而且也走了我的索引]]></content>

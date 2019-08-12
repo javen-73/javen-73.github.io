@@ -15,7 +15,7 @@
 
 
 <html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="referrer" content="no-referrer">
@@ -110,13 +110,13 @@
 
 
 
-  <meta name="description" content="Mysql组内排序说起组内排序上来就有人想说啦，不就搞个子查询就行啦嘛 其实这个方法我试过，根据我的业务是会全表扫描的，贼鸡儿慢 今天说的是另一种方法，先说一下要组内排序的需求     ID 设备编码 创建时间     151869253765566464 865800045644967 2019-06-14 16:06:33   151869253765566465 86580004564496">
+  <meta name="description" content="Mysql组内排序说起组内排序上来就有人想说啦，不就搞个子查询就行啦嘛 其实这个方法我试过，根据我的业务是会全表扫描的，贼鸡儿慢 今天说的是另一种方法，先说一下要组内排序的需求     ID 设备编码 创建时间    151869253765566464 865800045644967 2019-06-14 16:06:33   151869253765566465 865800045644967">
 <meta name="keywords" content="Mysql组内排序,七三,Javen73">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql组内排序">
 <meta property="og:url" content="https://www.javen73.com/archives/4111870243.html">
 <meta property="og:site_name" content="七三">
-<meta property="og:description" content="Mysql组内排序说起组内排序上来就有人想说啦，不就搞个子查询就行啦嘛 其实这个方法我试过，根据我的业务是会全表扫描的，贼鸡儿慢 今天说的是另一种方法，先说一下要组内排序的需求     ID 设备编码 创建时间     151869253765566464 865800045644967 2019-06-14 16:06:33   151869253765566465 86580004564496">
+<meta property="og:description" content="Mysql组内排序说起组内排序上来就有人想说啦，不就搞个子查询就行啦嘛 其实这个方法我试过，根据我的业务是会全表扫描的，贼鸡儿慢 今天说的是另一种方法，先说一下要组内排序的需求     ID 设备编码 创建时间    151869253765566464 865800045644967 2019-06-14 16:06:33   151869253765566465 865800045644967">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006Es6iUgy1g59x37u79jj303c03cwef.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006Es6iUgy1g59xjzsbo6j307p04p74a.jpg">
@@ -127,7 +127,7 @@
 <meta property="og:updated_time" content="2019-07-24T14:59:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql组内排序">
-<meta name="twitter:description" content="Mysql组内排序说起组内排序上来就有人想说啦，不就搞个子查询就行啦嘛 其实这个方法我试过，根据我的业务是会全表扫描的，贼鸡儿慢 今天说的是另一种方法，先说一下要组内排序的需求     ID 设备编码 创建时间     151869253765566464 865800045644967 2019-06-14 16:06:33   151869253765566465 86580004564496">
+<meta name="twitter:description" content="Mysql组内排序说起组内排序上来就有人想说啦，不就搞个子查询就行啦嘛 其实这个方法我试过，根据我的业务是会全表扫描的，贼鸡儿慢 今天说的是另一种方法，先说一下要组内排序的需求     ID 设备编码 创建时间    151869253765566464 865800045644967 2019-06-14 16:06:33   151869253765566465 865800045644967">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006Es6iUgy1g59x37u79jj303c03cwef.jpg">
 
 
@@ -313,7 +313,7 @@
 
     
 
-    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+    <a href="/baidusitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
 
   </li>
 
@@ -518,8 +518,7 @@
 <th>创建时间</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>151869253765566464</td>
 <td>865800045644967</td>
 <td>2019-06-14 16:06:33</td>
@@ -534,13 +533,14 @@
 <td>865533030153500</td>
 <td>2019-06-21 15:13:52</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>我一上来就没动脑子就写了SQL</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM t_xxx </span><br><span class="line">GROUP BY 设备编码</span><br><span class="line">ORDER BY 创建时间 DESC</span><br></pre></td></tr></table></figure>
+
 <p>但是……事与愿违啊，这个排序根本就没发挥作用，是组外的时间排序</p>
 <p>然后就只能考虑用子查询先排序，后分组</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM (</span><br><span class="line">    SELECT * FROM t_xxx</span><br><span class="line">    ORDER BY 创建时间 DESC</span><br><span class="line">) tmp</span><br><span class="line">GROUP BY 设备编码</span><br></pre></td></tr></table></figure>
+
 <p>可是然并卵，还是没有获取到最新的创建时间</p>
 <p><img src="https://ws1.sinaimg.cn/large/006Es6iUgy1g59xjzsbo6j307p04p74a.jpg" alt="image"></p>
 <p>那怎么办呢？只能另辟蹊径，从Having上下手？想了半天也没法整</p>
@@ -551,6 +551,7 @@
 <p>然后把GROUP_CONCAT 的字段SUB_STRING一下取第一个不就完事儿了嘛~</p>
 <p>话不多说上SQL</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT </span><br><span class="line">	设备编码,</span><br><span class="line">	SUBSTRING_INDEX(GROUP_CONCAT(创建时间 ORDER BY 创建时间  desc),&apos;,&apos;,1) last_time</span><br><span class="line">FROM t_xxx</span><br><span class="line">GROUP BY 设备编码</span><br></pre></td></tr></table></figure>
+
 <p><img src="https://wx1.sinaimg.cn/large/006Es6iUgy1g59xzqwtxyj30gr0ba3yw.jpg" alt="image"></p>
 <p>搞定！而且也走了我的索引</p>
 <p><img src="https://wx4.sinaimg.cn/large/006Es6iUgy1g59y1l39h2j30od020q2u.jpg" alt="image"></p>
@@ -626,6 +627,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/archives/355843973.html" rel="prev" title="策略设计模式">
+                策略设计模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -699,7 +704,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -724,7 +729,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -761,7 +768,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
