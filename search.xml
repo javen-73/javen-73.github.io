@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[模板与策略设计模式的区别]]></title>
+    <url>%2Farchives%2F875115734.html</url>
+    <content type="text"><![CDATA[模板与策略设计模式的区别首先需要回顾一下，前面的 那什么是模板设计模式呢？ emmm，其实模板设计模式很像，但用法不一样。 唯一的区别是在于策略设计模式，需要对上下文环境来随时动态的改变所运行的策略 简单的来说吧，你要去买车，一个是去买奥拓，一个是去买奥迪。这两种策略呢，需要根据你钱包的多少来 进行调节的。假如你余额有100w，那你就去买奥迪，反之亦然 OK，说了这些，那什么是模板呢？模板其实就是定义一个买车的行为，来实现它们，一个买奥拓的实现，和一个买奥迪的实现。模板没有所谓的根据上下文切换]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>模板设计模式</tag>
+        <tag>策略设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[责任链模式]]></title>
     <url>%2Farchives%2F1644716670.html</url>
     <content type="text"><![CDATA[责任链设计模式（Chain of Responsibility Pattern）简单介绍举个栗子，还是拿支付系统来说。用户下了一个订单，那么我们需要处理用户是否使用了优惠券、活动等等 我们把订单处理的整个流程用链表的形式穿插起来，就可以形成一个责任链的形式。 当一个用户下了订单，并使用了优惠券但没有使用活动，在责任链处理中，发现用户没有参加活动，则不进行处理继续调用责任链下一步处理，遇到优惠券Handler的时候，则对其进行操作。 代码实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758public interface BaseHandler&#123; void doSomething(String input,BaseHandler baseHandler);&#125;public class ChainHandler implements BaseHandler&#123; // 责任链全部调度任务 private List&lt;BaseHandler&gt; handlers = new ArrayList&lt;&gt;(); // 责任链下标 private int index; public ChainHandler addHandler(BaseHandler baseHandler)&#123; handlers.add(baseHandler); return this; &#125; public void doSomething(String input,BaseHandler baseHandler)&#123; // 若下标行至数组底部，则不执行 if(index==handlers.size()) return; // 取出任务 BaseHandler handle = handlers.get(index); // 下标向下滑动 index ++; handler.doSomething(input,this); &#125;&#125;public class CouponHandler&#123; @Override public void doSomething(String input,BaseHandler baseHandler)&#123; if("优惠券".equals(input))&#123; System.out.println("优惠券"); // 若是只想在链中只让一个去处理则在处理的链中retur掉 // return; 停止链的调用 &#125; baseHadler.doSomething(input,baseHandler); &#125;&#125;public class ActivityHandler&#123; @Override public void doSomethig(String input,BaseHanndler baseHandler)&#123; if("活动".equals(input))&#123; System.out.println("活动"); &#125; baseHandler.doSomething(input,BaseHandler); &#125;&#125;public class Test&#123; public static void main(String args[])&#123; //创建责任链 ChainHandler chainHandler = new ChainHandler(); //给责任链添加任务 chainHandler.addHandler(new CouponHandler()) .addHandler(new ActivityHandler()); //调用责任链 chainHandler.doSomething("优惠券",chainHandler); &#125;&#125; 小结可能有些人还没有理解这个责任链，不妨先自己用代码写写看。也许多写两边就能明白这个是什么意思啦 じゃあ、まだ今度会いましょう〜]]></content>
